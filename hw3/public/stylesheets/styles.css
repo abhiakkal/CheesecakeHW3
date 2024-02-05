@@ -1,0 +1,180 @@
+/* ABHI AKKAL */
+
+table {
+    font-family: 'Times New Roman', sans-serif;
+    border-collapse: collaps;
+    width: 100%
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    backround-color: #b1ddc4;
+}
+
+
+.form-group .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-group .col {
+    flex: 1;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+#quantityDropdown {
+    width: 60px; /* Set a fixed width  */
+}
+
+.topping-options {
+    display: inline-block;
+}
+
+#toppingList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#toppingList li {
+    margin-bottom: 5px;
+}
+
+
+
+.quantity-group {
+    display: flex;
+    align-items: center;
+}
+
+#quantityInput {
+    width: 40px;
+    margin-right: 10px;
+    text-align: center;
+    border: 1px solid #3498db; /* Blue border for the quantity input */
+}
+
+#container {
+    max-width: 800px;
+    margin: 20px auto; /* Add margin for better centering */
+    background-color: #add8e6; /* Light blue background color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    color: #3498db; /* Blue color for the header */
+}
+
+form,
+img {
+    margin-bottom: 20px;
+}
+
+#thankYouMessage {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #27ae60; /* Green color for the thank you message */
+}
+
+#searchBar {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    padding: 5px;
+    border: 1px solid #3498db; /* Blue border for the search input */
+}
+
+#orderButton {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#quantityDropdown {
+    width: 60px; /* Set a fixed width for better alignment */
+}
+
+#toppingOptions {
+    list-style-type: none;
+    padding: 0;
+}
+
+#toppingOptions li {
+    margin-bottom: 5px;
+}
+
+#monthSelector {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: Extra Bold; /* kake the entire line thicker */
+    color: burlywood;
+}
+#monthOptions {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 80px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    z-index: 1;
+    overflow-y: auto;
+    max-height: 150px;
+}
+
+#monthSelector:hover #monthOptions {
+    display: block;
+}
+
+#orderSummary {
+    background-color: #ecf0f1;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+#orderSummary ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#orderSummary li {
+    margin-bottom: 5px;
+}
+
+#cheesecakeImage {
+    width: 100%;
+    max-width: 100%; /* max*/
+}
+
+h1 {
+    text-align: center;
+    color: #3498db; /* Blue color for the heading */
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}

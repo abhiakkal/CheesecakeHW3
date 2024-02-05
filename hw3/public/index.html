@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheesecake Order</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1>Cheesecake Order Form</h1>
+        </header>
+
+        <div id="searchBar">
+            <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+
+        <img id="cheesecakeImage"
+            src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg"
+            alt="Wiki.com">
+
+        <form action="/action_page.php">
+            <table>
+                <tr>
+                    <th><label for="quantity">Quantity:</label> </th>
+                    <th>Topping: </th>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <li><input type="radio" id="plain" name="topping" value="Plain">
+                            <label for="plain">Plain</label>
+                        </li>
+                    </td>
+                </tr>
+                <tr>
+                    <td><select name="quantity" id="quantityDropdown">
+
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select></td>
+                    <td>
+                        <li><input type="radio" id="cherry" name="topping" value="Cherry">
+                            <label for="cherry">Cherry</label>
+                        </li>
+                    </td>
+                <tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <li><input type="radio" id="chocolate" name="topping" value="Chocolate">
+                            <label for="chocolate">Chocolate</label>
+                        </li>
+                    </td>
+                </tr>
+            </table>
+            </table>
+
+            <label for="notes">Notes:</label><br>
+            <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
+
+            <input type="submit" value="Order" id="orderButton">
+        </form>
+
+        <div id="thankYouMessage"></div>
+
+        <div id="monthSelector">
+            <span>Orders for <span id="selectedMonth" style="font-weight: bold;">Jan</span></span>
+            <div id="monthOptions">
+                <div class="month-option">Jan</div>
+                <div class="month-option">Feb</div>
+                <div class="month-option">Mar</div>
+                <div class="month-option">Apr</div>
+                <div class="month-option">May</div>
+                <div class="month-option">Jun</div>
+                <div class="month-option">Jul</div>
+                <div class="month-option">Aug</div>
+                <div class="month-option">Sep</div>
+                <div class="month-option">Oct</div>
+                <div class="month-option">Nov</div>
+                <div class="month-option">Dec</div>
+            </div>
+        </div>
+
+        <!-- Orders -->
+        <ul>
+            <li>11 Cherry</li>
+            <li>17 Chocolate</li>
+            <li>31 Plain</li>
+        </ul>
+        <div id="orderSummary"></div>
+
+        <script>
+            $(document).ready(function () {
+                $("form").submit(function (event) {
+                    event.preventDefault();
+        
+                    // Get quantity value
+                    var quantity = $("#quantityDropdown").val();
+                    console.log("Quantity:", quantity);
+        
+                    // Get topping value
+                    var topping = $("input[name='topping']:checked").val();
+                    console.log("Topping:", topping);
+        
+                    // Get notes value
+                    var notes = $("#notes").val().toLowerCase();
+        
+                    if (notes.includes("vegan")) {
+                        alert("Warning! Cheesecake contains dairy!!");
+                    } else {
+                        // Remove form section
+                        $("form").remove();
+        
+                        // Display order confirmation
+                        var confirmationText = "Thank you! Your order has been placed\n";
+                        confirmationText += "Quantity: " + (quantity || "Not specified") + "\n";
+                        confirmationText += "Topping: " + (topping || "Not specified") + "\n";
+                        confirmationText += "Notes: " + (notes || "No notes");
+        
+                        $("#thankYouMessage").html("<p>" + confirmationText + "</p>").show();
+        
+                        // Display order summary
+                        $("#orderSummary").show();
+                    }
+                });
+        
+                $('.month-option').click(function (event) {
+                    event.stopPropagation();
+                    var selectedMonth = $(this).text();
+                    $('#selectedMonth').text(selectedMonth);
+                    $('#monthOptions').slideUp();
+                });
+        
+                $('#monthSelector').click(function () {
+                    $('#monthOptions').slideDown();
+                });
+        
+                // Helps with the hovering
+                $('#monthSelector').hover(
+                    function () {
+                        $('#monthOptions').slideDown();
+                    },
+                    function () {
+                        $('#monthOptions').slideUp();
+                    }
+                );
+            });
+        </script>
+<script>
+    $(document).ready(function () {
+        $("form").submit(function (event) {
+            event.preventDefault();
+
+            // Get quantity value
+            var quantity = $("#quantityDropdown").val();
+            console.log("Quantity:", quantity);
+
+            // Get topping value
+            var topping = $("input[name='topping']:checked").val();
+            console.log("Topping:", topping);
+
+            // Get notes value
+            var notes = $("#notes").val().toLowerCase();
+
+            if (notes.includes("vegan")) {
+                alert("Warning! Cheesecake contains dairy!!");
+            } else {
+                // Remove form section
+                $("form").remove();
+
+                // Display order confirmation
+                var confirmationText = "Thank you! Your order has been placed\n";
+                confirmationText += "Quantity: " + (quantity || "Not specified") + "\n";
+                confirmationText += "Topping: " + (topping || "Not specified") + "\n";
+                confirmationText += "Notes: " + (notes || "No notes");
+
+                $("#thankYouMessage").html("<p>" + confirmationText + "</p>").show();
+
+                // Display order summary
+                $("#orderSummary").show();
+            }
+        });
+
+        $('.month-option').click(function (event) {
+            event.stopPropagation();
+            var selectedMonth = $(this).text();
+            $('#selectedMonth').text(selectedMonth);
+            $('#monthOptions').slideUp();
+        });
+
+        $('#monthSelector').click(function () {
+            $('#monthOptions').slideDown();
+        });
+
+        // Helps with the hovering
+        $('#monthSelector').hover(
+            function () {
+                $('#monthOptions').slideDown();
+            },
+            function () {
+                $('#monthOptions').slideUp();
+            }
+        );
+    });
+</script>
+        
+
+    </div>
+</body>
+
+</html>
