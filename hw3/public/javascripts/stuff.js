@@ -1,44 +1,48 @@
 // Helper method to handle form submission
 function handleFormSubmission(event) {
     event.preventDefault();
-
-    // Get quantity value
     var quantity = $("#quantityDropdown").val();
-    console.log("Quantity:", quantity);
-
-    // Get topping value
     var topping = $("input[name='topping']:checked").val();
-    console.log("Topping:", topping);
-
-    // Get notes value
     var notes = $("#notes").val().toLowerCase();
 
     if (notes.includes("vegan")) {
         alert("Warning! Cheesecake contains dairy!!");
     } else {
-        // Remove form section
         $("form").remove();
-
-        // Display order confirmation
         var confirmationText = "Thank you! Your order has been placed\n";
         confirmationText += "Quantity: " + (quantity || "Not specified") + "\n";
         confirmationText += "Topping: " + (topping || "Not specified") + "\n";
         confirmationText += "Notes: " + (notes || "No notes");
-
         $("#thankYouMessage").html("<p>" + confirmationText + "</p>").show();
-
-        // Display order summary
         $("#orderSummary").show();
     }
 }
 
-// Helper method to handle month option click
-function handleMonthOptionClick(event) {
-    event.stopPropagation();
-    var selectedMonth = $(this).text();
-    $('#selectedMonth').text(selectedMonth);
-    $('#monthOptions').slideUp();
+// Function to handle AJAX POST request to retrieve orders for a specific month
+function post_request_order(month) {
+    // Retrieve orders for the selected month via AJAX POST request
+    $.post("/orders", { month: month })
+    .done(function(data) {
+        $("#orderlist").empty(); // Clear the existing order list
+        data.data.forEach(function(order) { // Iterate over each order in the response data
+            $("#orderlist").append("<li>" + order.quantity + " " + order.toppings + "</li>"); // Append a new order item to the order list
+        });
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("Error fetching orders:", errorThrown);
+    });
 }
+
+// Event handler for clicking on a month option
+function handleMonthOptionClick(event) {
+    event.preventDefault();
+    var selectedMonth = $(this).text().trim();
+    $("#selectedMonth").text(selectedMonth); // Update the displayed month
+    post_request_order(selectedMonth); // Retrieve orders for the selected month
+}
+
+// Attach click event handler to all month options
+$('.month-option').click(handleMonthOptionClick);
 
 // Helper method to handle month selector click
 function handleMonthSelectorClick() {
@@ -52,10 +56,6 @@ function handleMonthSelectorHover() {
 
 // Assign event handlers
 $(document).ready(function () {
-    $("form").submit(handleFormSubmission);
-
-    $('.month-option').click(handleMonthOptionClick);
-
     $('#monthSelector').click(handleMonthSelectorClick);
 
     // Helps with the hovering
